@@ -25,7 +25,8 @@ public class UrlController {
 	@Autowired
 	private UrlService urlService;
 	@RequestMapping(value = "/catalogue", method = RequestMethod.GET)
-	public ResponseEntity<UrlCatalogueResponse> getCatalogue(@RequestParam(value = "j", required = false) String j ,WebRequest webRequest, HttpServletResponse response) throws Exception {
+	public ResponseEntity<UrlCatalogueResponse> getCatalogue(@RequestParam(value = "j", required = false) String j ,
+                                                             WebRequest webRequest) throws Exception {
 		String urlList = webRequest.getParameter("urlList");
 		Gson gson = new Gson();
 		UrlCatalogueRequest catalogueRequest = gson.fromJson(urlList, UrlCatalogueRequest.class);

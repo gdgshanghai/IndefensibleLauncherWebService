@@ -421,11 +421,11 @@
 			</build>
 		</profile>
 		<profile>
-			<id>32</id>
+			<id>38</id>
 			<build>
 				<resources>
 					<resource>
-						<directory>resources/32/</directory>
+						<directory>resources/38/</directory>
 						<filtering>true</filtering>
 					</resource>
 				</resources>
