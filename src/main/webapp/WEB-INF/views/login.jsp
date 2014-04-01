@@ -45,7 +45,7 @@
 				in</button>
 			<p>
 				<h4>
-					Not a member? <a href="<c:url value="/Applicant/Apply" />">Apply
+					Not a member? <a href="#about">Apply
 						here </a> .
 				</h4>
 			</p>

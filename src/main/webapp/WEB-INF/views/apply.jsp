@@ -31,7 +31,7 @@ body {
 
 <body>
 
-	<%@ include file="navigation.jsp"%>
+	<%@ include file="old_navigation.jsp"%>
 
 	<div class="container">
 

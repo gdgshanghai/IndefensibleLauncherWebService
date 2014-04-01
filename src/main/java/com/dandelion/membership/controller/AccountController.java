@@ -27,7 +27,7 @@ private static final Logger logger = LoggerFactory.getLogger(AccountController.c
 		
 		
 		if("admin".equals(email)&&"admin".equals(password)){
-			return "home";
+			return "dashboard";
 		}
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
