@@ -1,9 +1,9 @@
-package com.dandelion.membership.controller.Member;
+package com.dandelion.membership.controller.member;
 
 import com.dandelion.membership.dao.model.Reservation;
 import com.dandelion.membership.dao.model.ReservationForm;
 import com.dandelion.membership.exception.MembershipException;
-import com.dandelion.membership.service.ReservationService;
+import com.dandelion.membership.service.member.ReservationService;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

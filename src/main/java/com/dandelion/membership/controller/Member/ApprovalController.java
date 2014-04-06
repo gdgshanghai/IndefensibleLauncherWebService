@@ -1,8 +1,8 @@
-package com.dandelion.membership.controller.Member;
+package com.dandelion.membership.controller.member;
 
 import com.dandelion.membership.dao.model.Applicant;
 import com.dandelion.membership.dao.model.ApplicantForm;
-import com.dandelion.membership.service.ApprovalService;
+import com.dandelion.membership.service.member.ApprovalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
