@@ -7,15 +7,18 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 @RequestMapping(value = "account")
 public class AccountController extends BaseController {
-    @RequestMapping(value = "login")
+
+    public static final String EMAIL = "email";
+    public static final String PASSWORD = "password";
+    public static final String ADMIN = "admin";
+
+    @RequestMapping(value = LOGIN)
     public String login(WebRequest request) {
-        logger.info("login");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        if ("admin".equals(email) && "admin".equals(password)) {
+        String email = request.getParameter(EMAIL);
+        String password = request.getParameter(PASSWORD);
+        if (ADMIN.equals(email) && ADMIN.equals(password)) {
             return TRUE;
         }
         return FALSE;
     }
-
 }

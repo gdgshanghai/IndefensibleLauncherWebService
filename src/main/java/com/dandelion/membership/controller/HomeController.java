@@ -14,20 +14,18 @@ import java.util.Locale;
  */
 @Controller
 public class HomeController extends BaseController {
-
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = NIL, method = RequestMethod.GET)
     public String login() {
         return LOGIN;
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = HOME, method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
         showDate(locale, model);
         return HOME;
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    @RequestMapping(value = DASHBOARD, method = RequestMethod.GET)
     public String dashboard(Locale locale, Model model) {
         showDate(locale, model);
         return DASHBOARD;

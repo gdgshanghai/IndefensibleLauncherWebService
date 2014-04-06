@@ -13,9 +13,14 @@ public class BaseController {
     public static final String DASHBOARD = "dashboard";
     public static final String LOGIN = "login";
     public static final String HOME = "home";
+    public static final String NIL = "/";
+
 
     public static final String ACCESS_KEY = "7EAZL7bN77bzyRLd8_4aIBIVKC6J45hMQKulx69c";
     public static final String SECRET_KEY = "VRgfzWEf7jIILrnSKc_ewLHdKbGK2A2wwnE7PM2h";
     public static final String BUCKET_NAME = "indefensible-launcher";
     public static final String TEST_IMAGE_PATH = "/Users/ouroc/Desktop/Fullscreen_3_3_14__10_09_PM.png";
+
+    public static final String QINIU_UPLOADTOKEN = "/qiniu/uploadtoken";
+
 }
