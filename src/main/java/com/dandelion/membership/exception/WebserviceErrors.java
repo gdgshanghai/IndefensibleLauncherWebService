@@ -25,6 +25,11 @@ public class WebserviceErrors {
 	
 	public static final int RESULT_NULL_CODE = 611;
 	public static final String RESULT_NULL_MESSAGE = "result is null";
+
+
+
+    public static final int PARAM_ERROR_CODE = 613;
+	public static final String PARAM_ERROR_MESSAGE = "Param error.";
 	
 	public static final int EMAIL_INVALID_CODE = 1001;
 	public static final String EMAIL_INVALID_MESSAGE = "email invalid";

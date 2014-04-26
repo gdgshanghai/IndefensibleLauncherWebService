@@ -1,5 +1,7 @@
 package com.dandelion.membership.controller;
 
+import com.dandelion.membership.exception.MembershipException;
+import com.dandelion.membership.exception.WebserviceErrors;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueRequest;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
 import com.dandelion.membership.service.UrlService;
@@ -27,7 +29,10 @@ public class UrlController extends BaseController {
         String urlList = webRequest.getParameter("urlList");
         UrlCatalogueRequest catalogueRequest = gson.fromJson(urlList, UrlCatalogueRequest.class);
         if (catalogueRequest == null) {
-            throw new Exception();
+            throw new MembershipException(
+                    WebserviceErrors.PARAM_ERROR_CODE,
+                    WebserviceErrors.PARAM_ERROR_MESSAGE);
+
         }
         List<String> list = catalogueRequest.getUrlList();
         UrlCatalogueResponse result = urlService.getCollection(list);
