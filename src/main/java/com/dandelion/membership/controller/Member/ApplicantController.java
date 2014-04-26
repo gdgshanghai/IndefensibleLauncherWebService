@@ -1,4 +1,4 @@
-package com.dandelion.membership.controller.member;
+package com.dandelion.membership.controller.Member;
 
 import com.dandelion.membership.dao.model.Applicant;
 import com.dandelion.membership.service.member.ApplicantService;

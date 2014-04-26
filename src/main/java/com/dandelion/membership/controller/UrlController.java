@@ -26,8 +26,12 @@ public class UrlController extends BaseController {
                                                              WebRequest webRequest) throws Exception {
         String urlList = webRequest.getParameter("urlList");
         UrlCatalogueRequest catalogueRequest = gson.fromJson(urlList, UrlCatalogueRequest.class);
+        if (catalogueRequest == null) {
+            throw new Exception();
+        }
         List<String> list = catalogueRequest.getUrlList();
         UrlCatalogueResponse result = urlService.getCollection(list);
+
         return new ResponseEntity<UrlCatalogueResponse>(result, HttpStatus.OK);
     }
 }
