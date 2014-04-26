@@ -3,7 +3,6 @@ package com.dandelion.membership.controller;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueRequest;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
 import com.dandelion.membership.service.UrlService;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +16,18 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/api/url")
-public class UrlController {
+public class UrlController extends BaseController {
 
     @Autowired
     private UrlService urlService;
 
-    @RequestMapping(value = "/catalogue", method = RequestMethod.GET)
+    @RequestMapping(value = "/collection", method = RequestMethod.GET)
     public ResponseEntity<UrlCatalogueResponse> getCatalogue(@RequestParam(value = "j", required = false) String j,
                                                              WebRequest webRequest) throws Exception {
         String urlList = webRequest.getParameter("urlList");
-        Gson gson = new Gson();
         UrlCatalogueRequest catalogueRequest = gson.fromJson(urlList, UrlCatalogueRequest.class);
         List<String> list = catalogueRequest.getUrlList();
-        UrlCatalogueResponse result = urlService.getCatalogue(list);
+        UrlCatalogueResponse result = urlService.getCollection(list);
         return new ResponseEntity<UrlCatalogueResponse>(result, HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.dandelion.membership.controller;
 
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,5 +23,12 @@ public class BaseController {
     public static final String TEST_IMAGE_PATH = "/Users/ouroc/Desktop/Fullscreen_3_3_14__10_09_PM.png";
 
     public static final String QINIU_UPLOADTOKEN = "/qiniu/uploadtoken";
+
+
+    protected Gson gson;
+
+    public BaseController() {
+        gson = new Gson();
+    }
 
 }

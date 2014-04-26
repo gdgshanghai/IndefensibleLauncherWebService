@@ -20,7 +20,7 @@ public class UrlService {
     @Autowired
     private UrlDao urlDao;
 
-    public UrlCatalogueResponse getCatalogue(List<String> list) {
+    public UrlCatalogueResponse getCollection(List<String> list) {
         Map<String, String> m = urlDao.initUrlCatalogue();
 
         List<String> work = new ArrayList<String>();
@@ -62,5 +62,8 @@ public class UrlService {
         catalogueResponse.setWork(work);
         return catalogueResponse;
     }
+
+
+
 
 }
