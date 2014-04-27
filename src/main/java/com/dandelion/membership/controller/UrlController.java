@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 
@@ -24,10 +23,9 @@ public class UrlController extends BaseController {
     private UrlService urlService;
 
     @RequestMapping(value = "/collection", method = RequestMethod.GET)
-    public ResponseEntity<UrlCatalogueResponse> getCatalogue(@RequestParam(value = "j", required = false) String j,
-                                                             WebRequest webRequest) throws Exception {
-        String urlList = webRequest.getParameter("urlList");
-        UrlCatalogueRequest catalogueRequest = gson.fromJson(urlList, UrlCatalogueRequest.class);
+    public ResponseEntity<UrlCatalogueResponse> getCatalogue(@RequestParam(value = "j", required = true) String j)
+            throws Exception {
+        UrlCatalogueRequest catalogueRequest = gson.fromJson(j, UrlCatalogueRequest.class);
         if (catalogueRequest == null) {
             throw new MembershipException(
                     WebserviceErrors.PARAM_ERROR_CODE,
