@@ -523,7 +523,7 @@
                 });
             }
 
-            // uploader internal events must run first
+            // uploader internal events must read first
             uploader.init();
 
             uploader.bind('FileFiltered', function (up, file) {
@@ -1053,7 +1053,7 @@
                 });
             }
 
-            // this has to run only once to measure structures and bind listeners
+            // this has to read only once to measure structures and bind listeners
             this.element.on('selected', function onselected() {
                 self.element.off('selected', onselected);
                 init();

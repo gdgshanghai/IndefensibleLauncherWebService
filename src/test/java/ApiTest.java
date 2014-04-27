@@ -1,4 +1,5 @@
 import com.dandelion.membership.controller.BaseController;
+import com.dandelion.membership.util.ReadCVS;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -29,6 +30,13 @@ public class ApiTest extends BaseTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
+    @Test
+    public void readCVS() throws Exception {
+        String path = Test.class.getResource("/urlCollection.csv").getFile();
+        System.out.println(path);
+        ReadCVS readCVS = new ReadCVS();
+        readCVS.read(path);
+    }
 
     @Test
     public void initDatabase() throws Exception {

@@ -29,48 +29,18 @@ public class UrlService {
 
     public UrlCatalogueResponse getCollection(List<String> list) throws IndefensibleException {
         Map<String, String> m = getUrlCollectonMapByUrlList(list);
-        List<String> work = new ArrayList<String>();
-        List<String> home = new ArrayList<String>();
-        List<String> news = new ArrayList<String>();
-        List<String> social = new ArrayList<String>();
-        List<String> finance = new ArrayList<String>();
-        List<String> shopping = new ArrayList<String>();
-
-        for (String s : list) {
-            if (m.containsKey(s)) {
-                String catalogue = m.get(s);
-                if (catalogue.equals(UrlEnum.WORK.name())) {
-                    work.add(s);
-                }
-                if (catalogue.equals(UrlEnum.HOME.name())) {
-                    home.add(s);
-                }
-                if (catalogue.equals(UrlEnum.NEWS.name())) {
-                    news.add(s);
-                }
-                if (catalogue.equals(UrlEnum.SOCIAL.name())) {
-                    social.add(s);
-                }
-                if (catalogue.equals(UrlEnum.FINANCE.name())) {
-                    finance.add(s);
-                }
-                if (catalogue.equals(UrlEnum.SHOPPING.name())) {
-                    shopping.add(s);
-                }
-            }
-        }
-        UrlCatalogueResponse catalogueResponse = new UrlCatalogueResponse();
-        catalogueResponse.setFinance(finance);
-        catalogueResponse.setHome(home);
-        catalogueResponse.setShopping(shopping);
-        catalogueResponse.setNews(news);
-        catalogueResponse.setSocial(social);
-        catalogueResponse.setWork(work);
+        UrlCatalogueResponse catalogueResponse = getUrlCatalogueResponse(list, m);
         return catalogueResponse;
     }
 
     public UrlCatalogueResponse getCollectionFromMemory(List<String> list) {
         Map<String, String> m = urlDao.initUrlCatalogueMap();
+        UrlCatalogueResponse catalogueResponse = getUrlCatalogueResponse(list, m);
+        return catalogueResponse;
+    }
+
+
+    private UrlCatalogueResponse getUrlCatalogueResponse(List<String> list, Map<String, String> m) {
         List<String> work = new ArrayList<String>();
         List<String> home = new ArrayList<String>();
         List<String> news = new ArrayList<String>();

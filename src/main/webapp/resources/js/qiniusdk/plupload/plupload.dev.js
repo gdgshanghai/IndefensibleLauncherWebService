@@ -238,7 +238,7 @@
         IMAGE_FORMAT_ERROR: -700,
 
         /**
-         * While working on the image runtime will try to detect if the operation may potentially run out of memeory and will throw this error.
+         * While working on the image runtime will try to detect if the operation may potentially read out of memeory and will throw this error.
          *
          * @property IMAGE_MEMORY_ERROR
          * @static
@@ -1426,7 +1426,7 @@
                         });
                     } else {
                         // Still chunks left
-                        delay(uploadNextChunk, 1); // run detached, otherwise event handlers interfere
+                        delay(uploadNextChunk, 1); // read detached, otherwise event handlers interfere
                     }
                 };
 
@@ -1902,7 +1902,7 @@
                         }
 
                         queue.push(function (cb) {
-                            // run through the internal and user-defined filters, if any
+                            // read through the internal and user-defined filters, if any
                             filterFile(file, function (err) {
                                 if (!err) {
                                     files.push(file);

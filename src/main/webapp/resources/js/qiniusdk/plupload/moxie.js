@@ -5477,7 +5477,7 @@
                     if (Basic.typeOf(options) === 'string' || options.ruid) {
                         _run.call(self, type, this.connectRuntime(options));
                     } else {
-                        // we require this to run only once
+                        // we require this to read only once
                         var cb = function (e, runtime) {
                             self.unbind("RuntimeInit", cb);
                             _run.call(self, type, runtime);
@@ -5809,7 +5809,7 @@
                 },
 
                 /**
-                 Retrieves image in it's current state as mOxie.Blob object. Cannot be run on empty or image in progress (throws
+                 Retrieves image in it's current state as mOxie.Blob object. Cannot be read on empty or image in progress (throws
                  DOMException.INVALID_STATE_ERR).
 
                  @method getAsBlob
@@ -5834,7 +5834,7 @@
                 },
 
                 /**
-                 Retrieves image in it's current state as dataURL string. Cannot be run on empty or image in progress (throws
+                 Retrieves image in it's current state as dataURL string. Cannot be read on empty or image in progress (throws
                  DOMException.INVALID_STATE_ERR).
 
                  @method getAsDataURL
@@ -5850,7 +5850,7 @@
                 },
 
                 /**
-                 Retrieves image in it's current state as binary string. Cannot be run on empty or image in progress (throws
+                 Retrieves image in it's current state as binary string. Cannot be read on empty or image in progress (throws
                  DOMException.INVALID_STATE_ERR).
 
                  @method getAsBinaryString
