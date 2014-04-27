@@ -53,7 +53,7 @@ public class ApiTest extends BaseTest {
         json.put("urlList", array);
         this.mockMvc.perform(
                 MockMvcRequestBuilders.get(API_URL_CATALOGUE).
-                        param("urlList", json.toString())
+                        param("j", json.toString())
         ).andDo(print()).andExpect(status().isOk());
     }
 
