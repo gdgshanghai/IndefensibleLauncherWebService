@@ -38,7 +38,7 @@ public class UrlController extends BaseController {
 
     @RequestMapping(value = "/init/collection", method = RequestMethod.POST)
     public ResponseEntity<String> initCollection() throws IndefensibleException {
-        urlService.initCollection();
+        urlService.updateCollectionFromCVS();
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 }

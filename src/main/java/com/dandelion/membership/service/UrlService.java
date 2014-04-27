@@ -5,13 +5,16 @@ import com.dandelion.membership.dao.UrlDao;
 import com.dandelion.membership.dao.model.UrlCollection;
 import com.dandelion.membership.exception.IndefensibleException;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
+import com.dandelion.membership.util.ReadCVS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.*;
 
 @Service
 public class UrlService {
+    public static final String CVS_PATH = "src/main/resources/urlCollection.csv";
     @Autowired
     private UrlDao urlDao;
 
@@ -82,13 +85,17 @@ public class UrlService {
     }
 
 
-    public void initCollection() throws IndefensibleException {
-        Map<String, String> initUrlMap = urlDao.initUrlCatalogueMap();
-        for (String keySet : initUrlMap.keySet()) {
+    public void updateCollectionFromCVS() throws IndefensibleException {
+//        Map<String, String> updateUrlMap = urlDao.initUrlCatalogueMap();
+        ReadCVS readCVS = new ReadCVS();
+        File file = new File(CVS_PATH);
+        Map<String, String> updateUrlMap = readCVS.read(file.getAbsolutePath());
+
+        for (String keySet : updateUrlMap.keySet()) {
             Date date = new Date();
             UrlCollection record = new UrlCollection();
             record.setUrl(keySet);
-            record.setType(initUrlMap.get(keySet));
+            record.setType(updateUrlMap.get(keySet));
             record.setCreateddate(date);
             record.setModifieddate(date);
             urlDao.insertUrlCollection(record);

@@ -1,6 +1,7 @@
 import com.dandelion.membership.util.ReadCVS;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -8,13 +9,18 @@ import java.util.Map;
  */
 public class CVSTest {
 
-    public static final String FILE = CVSTest.class.getResource("/urlCollection.csv").getFile();
-
     @Test
     public void getFilePath() {
-        System.out.println(FILE);
         ReadCVS readCVS = new ReadCVS();
-        Map<String, String> map = readCVS.read(FILE);
+        File file = new File("src/main/resources/urlCollection.csv");
+        Map<String, String> map = readCVS.read(file.getAbsolutePath());
         System.out.println(map);
+    }
+
+    @Test
+    public void getPath() {
+        File file = new File("src/resources/abc.txt");
+        String absolutePath = file.getAbsolutePath();
+        System.out.println(absolutePath);
     }
 }
