@@ -23,16 +23,16 @@ public class WebserviceErrorResolver implements HandlerExceptionResolver {
 		if (!enable) {
 			return null;
 		}
-		MembershipException exception;
-		if (arg3.getClass() == MembershipException.class) {
-			exception = (MembershipException) arg3;
+		IndefensibleException exception;
+		if (arg3.getClass() == IndefensibleException.class) {
+			exception = (IndefensibleException) arg3;
 		} else if(arg3.getClass().equals(JSONException.class)){
-			exception = new MembershipException(WebserviceErrors.ILLEGAL_PARAMETER_ERROR_CODE, 
-					WebserviceErrors.ILLEGAL_PARAMETER_ERROR_MESSAGE, arg3);
+			exception = new IndefensibleException(IndefensibleErrors.ILLEGAL_PARAMETER_ERROR_CODE,
+					IndefensibleErrors.ILLEGAL_PARAMETER_ERROR_MESSAGE, arg3);
 		}else {
-			exception = new MembershipException(
-					WebserviceErrors.SERVER_INTERNAL_ERROR_CODE,
-					WebserviceErrors.SERVER_INTERNAL_ERROR_MESSAGE, arg3);
+			exception = new IndefensibleException(
+					IndefensibleErrors.SERVER_INTERNAL_ERROR_CODE,
+					IndefensibleErrors.SERVER_INTERNAL_ERROR_MESSAGE, arg3);
 		}
 		logger.error("Error catched by OoPassErrorResolver: ", exception);
 		JSONObject json = JSONUtilities.getErrorJSON(exception);

@@ -6,7 +6,7 @@ package com.dandelion.membership.exception;
  * 
  * @author fengxiang
  */
-public class MembershipException extends Exception { 
+public class IndefensibleException extends Exception {
 	private static final long serialVersionUID = 8615689942272126971L;
 
 	/**
@@ -14,17 +14,17 @@ public class MembershipException extends Exception {
 	 * 
 	 * @param errorCode
 	 */
-	public MembershipException(int errorCode) {
+	public IndefensibleException(int errorCode) {
 		super("");
 		this.errorCode = errorCode;
 	}
 
-	public MembershipException(int errorCode, String message) {
+	public IndefensibleException(int errorCode, String message) {
 		super(message);
 		this.errorCode = errorCode;
 	}
 
-	public MembershipException(int errorCode, String message, Throwable cause) {
+	public IndefensibleException(int errorCode, String message, Throwable cause) {
 		super(message, cause);
 		this.errorCode = errorCode;
 	}

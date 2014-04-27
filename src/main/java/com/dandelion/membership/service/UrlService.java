@@ -1,11 +1,14 @@
 package com.dandelion.membership.service;
 
 import com.dandelion.membership.dao.UrlDao;
+import com.dandelion.membership.dao.model.UrlCollection;
+import com.dandelion.membership.exception.IndefensibleException;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +24,7 @@ public class UrlService {
     private UrlDao urlDao;
 
     public UrlCatalogueResponse getCollection(List<String> list) {
-        Map<String, String> m = urlDao.initUrlCatalogue();
-
+        Map<String, String> m = urlDao.initUrlCatalogueMap();
         List<String> work = new ArrayList<String>();
         List<String> home = new ArrayList<String>();
         List<String> news = new ArrayList<String>();
@@ -64,6 +66,16 @@ public class UrlService {
     }
 
 
-
-
+    public void initCollection() throws IndefensibleException {
+        Map<String, String> initUrlMap = urlDao.initUrlCatalogueMap();
+        for (String keySet : initUrlMap.keySet()) {
+            Date date = new Date();
+            UrlCollection record = new UrlCollection();
+            record.setUrl(keySet);
+            record.setType(initUrlMap.get(keySet));
+            record.setCreateddate(date);
+            record.setModifieddate(date);
+            urlDao.insertUrlCollection(record);
+        }
+    }
 }
