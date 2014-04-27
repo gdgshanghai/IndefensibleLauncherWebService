@@ -31,12 +31,8 @@ public class UrlController extends BaseController {
                     IndefensibleErrors.PARAM_ERROR_CODE,
                     IndefensibleErrors.PARAM_ERROR_MESSAGE);
         }
-
-
         List<String> list = catalogueRequest.getUrlList();
         UrlCatalogueResponse result = urlService.getCollection(list);
-
-
         return new ResponseEntity<UrlCatalogueResponse>(result, HttpStatus.OK);
     }
 

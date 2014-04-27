@@ -1,5 +1,6 @@
 package com.dandelion.membership.service;
 
+import com.dandelion.membership.constant.UrlEnum;
 import com.dandelion.membership.dao.UrlDao;
 import com.dandelion.membership.dao.model.UrlCollection;
 import com.dandelion.membership.exception.IndefensibleException;
@@ -7,23 +8,68 @@ import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UrlService {
-    public static final String WORK = "work";
-    public static final String HOME = "home";
-    public static final String NEWS = "news";
-    public static final String SOCIAL = "social";
-    public static final String FINANCE = "finance";
-    public static final String SHOPPING = "shopping";
     @Autowired
     private UrlDao urlDao;
 
-    public UrlCatalogueResponse getCollection(List<String> list) {
+    public Map<String, String> getUrlCollectonMapByUrlList(List<String> list) throws IndefensibleException {
+        Map<String, String> map = new HashMap<String, String>();
+        for (String url : list) {
+            UrlCollection record = urlDao.selectUrlCollectionByUrl(url);
+            if (record != null) {
+                String type = record.getType();
+                map.put(url, type);
+            }
+        }
+        return map;
+    }
+
+    public UrlCatalogueResponse getCollection(List<String> list) throws IndefensibleException {
+        Map<String, String> m = getUrlCollectonMapByUrlList(list);
+        List<String> work = new ArrayList<String>();
+        List<String> home = new ArrayList<String>();
+        List<String> news = new ArrayList<String>();
+        List<String> social = new ArrayList<String>();
+        List<String> finance = new ArrayList<String>();
+        List<String> shopping = new ArrayList<String>();
+
+        for (String s : list) {
+            if (m.containsKey(s)) {
+                String catalogue = m.get(s);
+                if (catalogue.equals(UrlEnum.WORK.name())) {
+                    work.add(s);
+                }
+                if (catalogue.equals(UrlEnum.HOME.name())) {
+                    home.add(s);
+                }
+                if (catalogue.equals(UrlEnum.NEWS.name())) {
+                    news.add(s);
+                }
+                if (catalogue.equals(UrlEnum.SOCIAL.name())) {
+                    social.add(s);
+                }
+                if (catalogue.equals(UrlEnum.FINANCE.name())) {
+                    finance.add(s);
+                }
+                if (catalogue.equals(UrlEnum.SHOPPING.name())) {
+                    shopping.add(s);
+                }
+            }
+        }
+        UrlCatalogueResponse catalogueResponse = new UrlCatalogueResponse();
+        catalogueResponse.setFinance(finance);
+        catalogueResponse.setHome(home);
+        catalogueResponse.setShopping(shopping);
+        catalogueResponse.setNews(news);
+        catalogueResponse.setSocial(social);
+        catalogueResponse.setWork(work);
+        return catalogueResponse;
+    }
+
+    public UrlCatalogueResponse getCollectionFromMemory(List<String> list) {
         Map<String, String> m = urlDao.initUrlCatalogueMap();
         List<String> work = new ArrayList<String>();
         List<String> home = new ArrayList<String>();
@@ -35,22 +81,22 @@ public class UrlService {
         for (String s : list) {
             if (m.containsKey(s)) {
                 String catalogue = m.get(s);
-                if (catalogue.equals(WORK)) {
+                if (catalogue.equals(UrlEnum.WORK.name())) {
                     work.add(s);
                 }
-                if (catalogue.equals(HOME)) {
+                if (catalogue.equals(UrlEnum.HOME.name())) {
                     home.add(s);
                 }
-                if (catalogue.equals(NEWS)) {
+                if (catalogue.equals(UrlEnum.NEWS.name())) {
                     news.add(s);
                 }
-                if (catalogue.equals(SOCIAL)) {
+                if (catalogue.equals(UrlEnum.SOCIAL.name())) {
                     social.add(s);
                 }
-                if (catalogue.equals(FINANCE)) {
+                if (catalogue.equals(UrlEnum.FINANCE.name())) {
                     finance.add(s);
                 }
-                if (catalogue.equals(SHOPPING)) {
+                if (catalogue.equals(UrlEnum.SHOPPING.name())) {
                     shopping.add(s);
                 }
             }
