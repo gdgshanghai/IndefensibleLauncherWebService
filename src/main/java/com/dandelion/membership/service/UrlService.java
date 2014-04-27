@@ -2,14 +2,20 @@ package com.dandelion.membership.service;
 
 import com.dandelion.membership.constant.UrlEnum;
 import com.dandelion.membership.dao.UrlDao;
+import com.dandelion.membership.dao.csv.ReadCVS;
+import com.dandelion.membership.dao.csv.UrlEntryConverter;
 import com.dandelion.membership.dao.model.UrlCollection;
 import com.dandelion.membership.exception.IndefensibleException;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
-import com.dandelion.membership.util.ReadCVS;
+import com.googlecode.jcsv.writer.CSVWriter;
+import com.googlecode.jcsv.writer.internal.CSVWriterBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.*;
 
 @Service
@@ -17,6 +23,7 @@ public class UrlService {
     public static final String CVS_PATH = "src/main/resources/urlCollection.csv";
     @Autowired
     private UrlDao urlDao;
+
 
     public Map<String, String> getUrlCollectonMapByUrlList(List<String> list) throws IndefensibleException {
         Map<String, String> map = new HashMap<String, String>();
@@ -100,5 +107,29 @@ public class UrlService {
             record.setModifieddate(date);
             urlDao.insertUrlCollection(record);
         }
+    }
+
+    public void updateCVSCollection() throws IOException {
+        List<UrlCollection> Urls = urlDao.selectAllUrlCollection();
+        writeCsv(Urls);
+    }
+
+    private void writeCsv(List<UrlCollection> urls) throws IOException {
+        File file = new File(CVS_PATH);
+        Writer out = new FileWriter(file.getAbsolutePath());
+        CSVWriter<UrlCollection> csvWriter =
+                new CSVWriterBuilder<UrlCollection>(out).
+                entryConverter(new UrlEntryConverter()).build();
+        csvWriter.writeAll(urls);
+    }
+
+    public static void main(String[] args) throws IOException {
+        List<UrlCollection> list = new ArrayList<UrlCollection>();
+        UrlCollection collection = new UrlCollection();
+        collection.setUrl("1");
+        collection.setType("2");
+        list.add(collection);
+        UrlService urlService = new UrlService();
+        urlService.writeCsv(list);
     }
 }

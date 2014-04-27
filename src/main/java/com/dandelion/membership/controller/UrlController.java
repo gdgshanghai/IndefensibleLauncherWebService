@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -39,6 +40,12 @@ public class UrlController extends BaseController {
     @RequestMapping(value = "/init/collection", method = RequestMethod.POST)
     public ResponseEntity<String> initCollection() throws IndefensibleException {
         urlService.updateCollectionFromCVS();
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/csv", method = RequestMethod.POST)
+    public ResponseEntity<String> initCsv() throws IOException {
+        urlService.updateCVSCollection();
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 }

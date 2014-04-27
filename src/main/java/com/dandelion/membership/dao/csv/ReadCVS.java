@@ -1,4 +1,4 @@
-package com.dandelion.membership.util;
+package com.dandelion.membership.dao.csv;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -33,6 +33,12 @@ public class UrlDao extends BaseDao {
         return (UrlCollection) getUniqueRecordFromList(list);
     }
 
+    public List<UrlCollection> selectAllUrlCollection() {
+        UrlCollectionExample example = new UrlCollectionExample();
+        example.createCriteria();
+        return urlCollectionMapper.selectByExample(example);
+    }
+
 
     public Map<String, String> initUrlCatalogueMap() {
         Map<String, String> map = new HashMap<String, String>();

@@ -1,8 +1,8 @@
 import com.dandelion.membership.controller.BaseController;
-import com.dandelion.membership.util.ReadCVS;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ApiTest extends BaseTest {
     public static final String API_URL_COLLECTION = "/api/url/collection";
     public static final String API_INIT_URL_COLLECTION = "/api/url/init/collection";
+    public static final String API_CSV = "/api/url/csv";
     @Autowired
     private WebApplicationContext wac;
 
@@ -29,7 +30,16 @@ public class ApiTest extends BaseTest {
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
-
+    @Test
+    @Ignore
+    public void updateCSV() throws Exception {
+        this.mockMvc.perform(
+                MockMvcRequestBuilders.
+                        post(API_CSV)
+        ).
+                andDo(print()).
+                andExpect(status().isOk());
+    }
 
     @Test
     public void updateDatabase() throws Exception {
