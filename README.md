@@ -18,9 +18,9 @@ IndefensibleLauncherWebService
 
 1. Modify (csv)[https://github.com/gdgshanghai/IndefensibleLauncherWebService/blob/master/src/main/resources/urlCollection.csv] 
 2. Run 
+
+```
     $cd <your_project_dir>
     $mvn clean install
-  
-
-
+```
 ## #NOZUONODIEWHYUTRY
