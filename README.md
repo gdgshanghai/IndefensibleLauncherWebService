@@ -3,7 +3,7 @@ IndefensibleLauncherWebService
 
 ## Dependency
 - Java1.6 or 1.7
-- (Maven3.05)[http://maven.apache.org/docs/3.0.5/release-notes.html]
+- [Maven3.05](http://maven.apache.org/docs/3.0.5/release-notes.html)
 - MySql
 
 ##How to run:
@@ -15,7 +15,7 @@ IndefensibleLauncherWebService
 
 ##How to use CSV:
 
-1. Modify (csv)[https://github.com/gdgshanghai/IndefensibleLauncherWebService/blob/master/src/main/resources/urlCollection.csv] 
+1. Modify [csv](https://github.com/gdgshanghai/IndefensibleLauncherWebService/blob/master/src/main/resources/urlCollection.csv) 
 2. Run 
 
 ```
