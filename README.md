@@ -15,7 +15,7 @@ IndefensibleLauncherWebService
 
 ##How to use CSV:
 
-1. Modify [csv](https://github.com/gdgshanghai/IndefensibleLauncherWebService/blob/master/src/main/resources/urlCollection.csv) 
+1. Modify [CSV](https://github.com/gdgshanghai/IndefensibleLauncherWebService/blob/master/src/main/resources/urlCollection.csv) 
 2. Run 
 
 ```
