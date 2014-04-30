@@ -7,12 +7,11 @@ IndefensibleLauncherWebService
 - MySql
 
 ##How to run:
-
+```
     $cd <your_project_dir>
     $mvn clean install
     $mvn tomcat:run
-    
-    
+```
 
 ##How to use CSV:
 
