@@ -10,7 +10,7 @@ public class IDLApp {
     private String url;
     private String initial;
     private String icon;
-    private List<String> collections;
+    private List<String> collection;
 
     public String getInitial() {
         return initial;
@@ -44,11 +44,11 @@ public class IDLApp {
         this.url = url;
     }
 
-    public List<String> getCollections() {
-        return collections;
+    public List<String> getCollection() {
+        return collection;
     }
 
-    public void setCollections(List<String> collections) {
-        this.collections = collections;
+    public void setCollection(List<String> collection) {
+        this.collection = collection;
     }
 }
