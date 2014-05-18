@@ -6,6 +6,7 @@ import com.dandelion.membership.dao.csv.ReadCVS;
 import com.dandelion.membership.dao.csv.UrlEntryConverter;
 import com.dandelion.membership.dao.model.UrlCollection;
 import com.dandelion.membership.exception.IndefensibleException;
+import com.dandelion.membership.model.bo.IDLApp;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
 import com.googlecode.jcsv.writer.CSVWriter;
 import com.googlecode.jcsv.writer.internal.CSVWriterBuilder;
@@ -25,10 +26,21 @@ public class UrlService {
     private UrlDao urlDao;
 
 
-    public Map<String, String> getUrlCollectonMapByUrlList(List<String> list) throws IndefensibleException {
+    public List<UrlCollection> getUrlCollectionByUrlList(List<String> list) throws IndefensibleException {
+        List<UrlCollection> apps = new ArrayList<UrlCollection>();
+        for (String url : list) {
+            UrlCollection record = urlDao.selectUniqueUrlCollectionByUrl(url);
+            if (record != null) {
+                apps.add(record);
+            }
+        }
+        return apps;
+    }
+
+    public Map<String, String> getUrlCollectionMapByUrlList(List<String> list) throws IndefensibleException {
         Map<String, String> map = new HashMap<String, String>();
         for (String url : list) {
-            UrlCollection record = urlDao.selectUrlCollectionByUrl(url);
+            UrlCollection record = urlDao.selectUniqueUrlCollectionByUrl(url);
             if (record != null) {
                 String type = record.getType();
                 map.put(url, type);
@@ -36,11 +48,30 @@ public class UrlService {
         }
         return map;
     }
-
-    public UrlCatalogueResponse getCollection(List<String> list) throws IndefensibleException {
-        Map<String, String> m = getUrlCollectonMapByUrlList(list);
+    public UrlCatalogueResponse getCollectionByUrlList(List<String> list) throws IndefensibleException {
+        Map<String, String> m = getUrlCollectionMapByUrlList(list);
         UrlCatalogueResponse catalogueResponse = getUrlCatalogueResponse(list, m);
         return catalogueResponse;
+    }
+
+    public UrlCatalogueResponse getCollectionByAppList(List<String> list) throws IndefensibleException {
+        List<IDLApp> appList = new ArrayList<IDLApp>();
+        List<UrlCollection> urls = getUrlCollectionByUrlList(list);
+        //TODO : Urls should belongs to many collections;
+        for (UrlCollection url : urls) {
+            IDLApp app = new IDLApp();
+            app.setUrl(url.getUrl());
+            List<String> collection = new ArrayList<String>();
+            collection.add(url.getType());
+            app.setCollections(collection);
+            appList.add(app);
+        }
+
+
+//        UrlCatalogueResponse catalogueResponse = getUrlCatalogueResponse(list, m);
+        UrlCatalogueResponse urlCatalogueResponse = new UrlCatalogueResponse();
+        urlCatalogueResponse.setUrlList(appList);
+        return urlCatalogueResponse;
     }
 
     public UrlCatalogueResponse getCollectionFromMemory(List<String> list) {
@@ -50,6 +81,7 @@ public class UrlService {
     }
 
 
+    @Deprecated
     private UrlCatalogueResponse getUrlCatalogueResponse(List<String> list, Map<String, String> m) {
         List<String> work = new ArrayList<String>();
         List<String> home = new ArrayList<String>();
@@ -82,12 +114,12 @@ public class UrlService {
             }
         }
         UrlCatalogueResponse catalogueResponse = new UrlCatalogueResponse();
-        catalogueResponse.setFinance(finance);
-        catalogueResponse.setHome(home);
-        catalogueResponse.setShopping(shopping);
-        catalogueResponse.setNews(news);
-        catalogueResponse.setSocial(social);
-        catalogueResponse.setWork(work);
+//        catalogueResponse.setFinance(finance);
+//        catalogueResponse.setHome(home);
+//        catalogueResponse.setShopping(shopping);
+//        catalogueResponse.setNews(news);
+//        catalogueResponse.setSocial(social);
+//        catalogueResponse.setWork(work);
         return catalogueResponse;
     }
 
@@ -131,5 +163,22 @@ public class UrlService {
         list.add(collection);
         UrlService urlService = new UrlService();
         urlService.writeCsv(list);
+    }
+
+    public UrlCatalogueResponse getCollection(List<IDLApp> list) throws IndefensibleException {
+        List<IDLApp> returnList = new ArrayList<IDLApp>();
+        for (IDLApp idlApp : list) {
+            String url = idlApp.getUrl();
+            List<UrlCollection> result = urlDao.selectUrlCollectionByUrl(url);
+            List<String> collections = new ArrayList<String>();
+            for (UrlCollection urlCollection : result) {
+                collections.add(urlCollection.getType());
+            }
+            idlApp.setCollections(collections);
+            returnList.add(idlApp);
+        }
+        UrlCatalogueResponse urlCatalogueResponse = new UrlCatalogueResponse();
+        urlCatalogueResponse.setUrlList(returnList);
+        return urlCatalogueResponse;
     }
 }

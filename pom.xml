@@ -442,5 +442,16 @@
                 </resources>
             </build>
         </profile>
+        <profile>
+            <id>112</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>resources/112/</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
     </profiles>
 </project>

@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `membership` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `membership`;
+CREATE DATABASE  IF NOT EXISTS `indefensible_launcher` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `indefensible_launcher`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: 127.0.0.1    Database: membership
+-- Host: 127.0.0.1    Database: indefensible_launcher
 -- ------------------------------------------------------
 -- Server version	5.6.14-log
 

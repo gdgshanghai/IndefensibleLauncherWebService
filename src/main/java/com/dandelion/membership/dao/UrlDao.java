@@ -20,19 +20,25 @@ public class UrlDao extends BaseDao {
 
     public void insertUrlCollection(UrlCollection record) throws IndefensibleException {
         String url = record.getUrl();
-        UrlCollection temp = selectUrlCollectionByUrl(url);
+        UrlCollection temp = selectUniqueUrlCollectionByUrl(url);
         if (temp == null) {
             urlCollectionMapper.insertSelective(record);
         }
     }
 
-    public UrlCollection selectUrlCollectionByUrl(String url) throws IndefensibleException {
+    public UrlCollection selectUniqueUrlCollectionByUrl(String url) throws IndefensibleException {
         UrlCollectionExample example = new UrlCollectionExample();
         example.createCriteria().andUrlEqualTo(url);
         List<UrlCollection> list = urlCollectionMapper.selectByExample(example);
         return (UrlCollection) getUniqueRecordFromList(list);
     }
 
+    public List<UrlCollection> selectUrlCollectionByUrl(String url) throws IndefensibleException {
+        UrlCollectionExample example = new UrlCollectionExample();
+        example.createCriteria().andUrlEqualTo(url);
+        List<UrlCollection> list = urlCollectionMapper.selectByExample(example);
+        return list;
+    }
     public List<UrlCollection> selectAllUrlCollection() {
         UrlCollectionExample example = new UrlCollectionExample();
         example.createCriteria();
