@@ -21,23 +21,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/api/url")
 public class UrlController extends BaseController {
-
     @Autowired
     private UrlService urlService;
-
-    @RequestMapping(value = "/collection", method = RequestMethod.GET)
-    public ResponseEntity<UrlCatalogueResponse> getCollection(@RequestParam(value = "j", required = true) String j)
-            throws Exception {
-        UrlCatalogueRequest catalogueRequest = gson.fromJson(j, UrlCatalogueRequest.class);
-        if (catalogueRequest == null) {
-            throw new IndefensibleException(
-                    IndefensibleErrors.PARAM_ERROR_CODE,
-                    IndefensibleErrors.PARAM_ERROR_MESSAGE);
-        }
-        List<String> list = catalogueRequest.getUrlList();
-        UrlCatalogueResponse result = urlService.getCollectionByUrlList(list);
-        return new ResponseEntity<UrlCatalogueResponse>(result, HttpStatus.OK);
-    }
 
     /**
      * Indefensible-launcher
@@ -65,6 +50,11 @@ public class UrlController extends BaseController {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
+
+
+
+
+    @Deprecated
     @RequestMapping(value = "/csv", method = RequestMethod.POST)
     public ResponseEntity<String> initCsv() throws IOException {
         urlService.updateCVSCollection();
