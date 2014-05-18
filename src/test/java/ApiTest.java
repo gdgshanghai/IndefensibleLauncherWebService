@@ -98,24 +98,12 @@ public class ApiTest extends BaseTest {
         ).
                 andDo(print()).
                 andExpect(status().isOk());
+
+
+
     }
 
 
-    @Test
-    public void getBusiness() throws Exception {
-        this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/dianping/business")).andDo(print()).andExpect(status().isOk());
-    }
-
-    @Test
-    public void getDeals() throws Exception {
-        this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/dianping/deals").
-                        param("latitude", "31.18268013000488").param("longitude", "121.42769622802734")
-        ).andDo(print()).andExpect(status().isOk());
-    }
-
-    @Test
     public void getQiniuAccessTokenSuccess() throws Exception {
         this.mockMvc.perform(
                 MockMvcRequestBuilders.get(BaseController.QINIU_UPLOADTOKEN)).andDo(print()).andExpect(status().isOk());
