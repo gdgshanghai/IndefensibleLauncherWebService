@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
-public class ApiTest extends BaseTest {
+public class UrlTest extends BaseTest {
     private static final String BASE_API_URL = "/api/url/";
 
     public static final String API_IDLAPP = BASE_API_URL + "idlapp";
