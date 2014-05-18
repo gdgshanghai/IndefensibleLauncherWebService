@@ -64,7 +64,7 @@
 
 	<!-- enable autowire -->
 	<context:annotation-config />
-
+    <!--<context:spring-configured/>-->
 
 	<!-- define the SqlSessionFactory -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

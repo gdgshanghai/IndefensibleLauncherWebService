@@ -4,11 +4,11 @@
 	<!-- <classPathEntry location="/Users/ouroc/.m2/repository/org/mybatis/mybatis/3.0.5/mybatis-3.0.5-sources.jar" 
 		/> -->
 
-	<classPathEntry location="C:\Users\Fengxiang\.m2\repository\mysql\mysql-connector-java\5.1.17\mysql-connector-java-5.1.17.jar" />
+	<classPathEntry location="/home/fengxiang/.m2/repository/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar" />
 	<context id="context1">
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/membership" userId="fengxiang"
-			password="fengxiang" />
+			connectionURL="jdbc:mysql://localhost:3306/indefensible_launcher" userId="root"
+			password="root" />
 		<javaModelGenerator
 			targetPackage="com.dandelion.membership.dao.model"
 			targetProject="indefensible-launcher" />
@@ -20,6 +20,7 @@
 
 
 		<table tableName="tb_url_collection" domainObjectName="UrlCollection"></table>
+		<table tableName="tb_user" domainObjectName="User"></table>
 		
 		
 	</context>

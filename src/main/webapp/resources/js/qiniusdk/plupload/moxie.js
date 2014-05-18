@@ -2356,7 +2356,7 @@
 
             options = options || {};
 
-            // register runtime in private hash
+            // addUser runtime in private hash
             runtimes[_uid] = this;
 
             /**

@@ -1,8 +1,6 @@
-import com.dandelion.membership.controller.BaseController;
 import com.dandelion.membership.model.bo.IDLApp;
 import com.dandelion.membership.model.hackathonmodel.IDLAppRequestPO;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
