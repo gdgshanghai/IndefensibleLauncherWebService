@@ -23,4 +23,8 @@ public class UserDao {
         userMapper.insertSelective(user);
         return user;
     }
+
+    public User getUser(long id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 }
