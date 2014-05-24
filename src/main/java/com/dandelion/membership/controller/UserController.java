@@ -1,12 +1,15 @@
 package com.dandelion.membership.controller;
 
+import com.dandelion.membership.dao.IDLAppDao;
+import com.dandelion.membership.dao.model.IDLApp;
+
 import com.dandelion.membership.dao.UrlDao;
 import com.dandelion.membership.dao.UserDao;
+import com.dandelion.membership.dao.model.IDLAppCollection;
 import com.dandelion.membership.dao.model.UrlCollection;
 import com.dandelion.membership.dao.model.User;
 import com.dandelion.membership.exception.IndefensibleException;
-import com.dandelion.membership.model.bo.IDLApp;
-import com.dandelion.membership.service.UserService;
+import com.dandelion.membership.model.IDLAppCollectionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +33,12 @@ public class UserController extends BaseController {
     @Autowired
     private UrlDao urlDao;
 
+    @Autowired
+    private IDLAppDao idlAppDao;
+
+    @Autowired
+    private IDLAppCollectionDao idlAppCollectionDao;
+
     @RequestMapping(value = "users", method = RequestMethod.POST)
     public ResponseEntity<User> createUser() throws IndefensibleException, InterruptedException {
         User user = new User();
@@ -41,6 +50,11 @@ public class UserController extends BaseController {
         User user = userDao.getUser(id);
         if (user != null) {
             IDLApp[] idlApps = gson.fromJson(j, IDLApp[].class);
+            idlApps = idlAppDao.insert(idlApps);
+            for (IDLApp idlApp : idlApps) {
+                long appId = idlApp.getId();
+                IDLAppCollection idl
+            }
             idlApps = updateCollection(idlApps);
             return new ResponseEntity<String>(gson.toJson(idlApps), HttpStatus.OK);
 //            IDLApps = IDLAppDao.save(IDLApps);

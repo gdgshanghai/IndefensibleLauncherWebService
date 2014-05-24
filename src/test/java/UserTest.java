@@ -1,4 +1,3 @@
-import com.dandelion.membership.model.bo.IDLApp;
 import com.dandelion.membership.model.hackathonmodel.IDLAppRequestPO;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,15 +44,15 @@ public class UserTest extends BaseTest {
 
     @Test
     public void addAppsSuccess() throws Exception {
-        IDLApp idlApp1 = new IDLApp();
+        IDLAppp idlApp1 = new IDLAppp();
         idlApp1.setUrl("wx.qq.com");
         idlApp1.setTitle("qq");
 
-        IDLApp idlApp2 = new IDLApp();
+        IDLAppp idlApp2 = new IDLAppp();
         idlApp2.setUrl("wx.qq.zz");
         idlApp2.setTitle("cc");
 
-        List<IDLApp> list = new ArrayList<IDLApp>();
+        List<IDLAppp> list = new ArrayList<IDLAppp>();
         list.add(idlApp1);
         list.add(idlApp2);
 

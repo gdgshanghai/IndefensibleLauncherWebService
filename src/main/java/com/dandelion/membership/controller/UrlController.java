@@ -1,10 +1,9 @@
 package com.dandelion.membership.controller;
 
+import com.dandelion.membership.dao.model.IDLApp;
 import com.dandelion.membership.exception.IndefensibleErrors;
 import com.dandelion.membership.exception.IndefensibleException;
-import com.dandelion.membership.model.bo.IDLApp;
 import com.dandelion.membership.model.hackathonmodel.IDLAppRequestPO;
-import com.dandelion.membership.model.hackathonmodel.UrlCatalogueRequest;
 import com.dandelion.membership.model.hackathonmodel.UrlCatalogueResponse;
 import com.dandelion.membership.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
