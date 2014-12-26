@@ -4,10 +4,10 @@
 	<!-- <classPathEntry location="/Users/ouroc/.m2/repository/org/mybatis/mybatis/3.0.5/mybatis-3.0.5-sources.jar" 
 		/> -->
 
-	<classPathEntry location="/home/fengxiang/.m2/repository/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar" />
+	<classPathEntry location="/Users/Shaman/.m2/repository/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar" />
 	<context id="context1">
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/indefensible_launcher" userId="root"
+			connectionURL="jdbc:mysql://localhost:3306/next" userId="root"
 			password="root" />
 		<javaModelGenerator
 			targetPackage="com.dandelion.membership.dao.model"
@@ -23,9 +23,9 @@
 		<table tableName="tb_user" domainObjectName="User"></table>
 		-->
 		
-		<table tableName="tb_idl_app" domainObjectName="IDLApp"></table>
-		<table tableName="tb_idl_collection" domainObjectName="IDLCollection"></table>
-		<table tableName="tb_idl_app_collection" domainObjectName="IDLAppCollection"></table>
+		<table tableName="thing" domainObjectName="Thing">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
 		
 		
 	</context>
