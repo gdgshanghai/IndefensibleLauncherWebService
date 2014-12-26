@@ -19,8 +19,13 @@
 			targetProject="indefensible-launcher" type="XMLMAPPER" />
 
 
-		<table tableName="tb_url_collection" domainObjectName="UrlCollection"></table>
+		<!-- <table tableName="tb_url_collection" domainObjectName="UrlCollection"></table>
 		<table tableName="tb_user" domainObjectName="User"></table>
+		-->
+		
+		<table tableName="tb_idl_app" domainObjectName="IDLApp"></table>
+		<table tableName="tb_idl_collection" domainObjectName="IDLCollection"></table>
+		<table tableName="tb_idl_app_collection" domainObjectName="IDLAppCollection"></table>
 		
 		
 	</context>

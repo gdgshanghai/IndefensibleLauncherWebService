@@ -1,6 +1,6 @@
 package com.dandelion.membership.model.hackathonmodel;
 
-import com.dandelion.membership.model.bo.IDLApp;
+import com.dandelion.membership.model.bo.IDLAppp;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ public class UrlCatalogueResponse {
 //    private List<String> finance;
 //    private List<String> shopping;
 
-    private List<IDLApp> urlList;
+    private List<IDLAppp> urlList;
 
-    public List<IDLApp> getUrlList() {
+    public List<IDLAppp> getUrlList() {
         return urlList;
     }
 
-    public void setUrlList(List<IDLApp> urlList) {
+    public void setUrlList(List<IDLAppp> urlList) {
         this.urlList = urlList;
     }
 }
